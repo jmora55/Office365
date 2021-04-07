@@ -1,0 +1,9 @@
+##Basic .bat file to run install##
+
+@ECHO ##To see the install when testing## or @ECHO OFF
+
+CD C:\
+CD Office365 Install\
+setup.exe /configure Configuration.xml
+
+PAUSE ##For testing -Remove PAUSE once successful install have been determined## 
