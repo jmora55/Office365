@@ -1,0 +1,53 @@
+Installing Office 365 Apps Using Deployment Tool
+
+1. Download Office Deployment tool 
+https://www.microsoft.com/en-us/download/details.aspx?id=49117
+
+2. Creat a Configuration File
+https://config.office.com
+
+3. Run the setup.exe from a command prompt
+Command: setup.exe /configure configuration.xml
+
+##Example of configuration.xml##
+
+<Configuration ID="c8e07b0a-733f-43df-9d6b-39229fa7b4f0">
+  <Add OfficeClientEdition="64" Channel="Current">
+    <Product ID="O365ProPlusRetail">
+      <Language ID="en-us" />
+      <Language ID="MatchPreviousMSI" />
+      <ExcludeApp ID="Groove" /> ##REMOVES APP FROM BEING INSTALLED##
+      <ExcludeApp ID="Lync" /> ##REMOVES APP FROM BEING INSTALLED##
+      <ExcludeApp ID="Bing" /> ##REMOVES APP FROM BEING INSTALLED##
+    </Product>
+  </Add>
+  <Property Name="SharedComputerLicensing" Value="0" />
+  <Property Name="SCLCacheOverride" Value="0" />
+  <Property Name="AUTOACTIVATE" Value="0" />
+  <Property Name="FORCEAPPSHUTDOWN" Value="FALSE" />
+  <Property Name="DeviceBasedLicensing" Value="0" />
+  <Updates Enabled="TRUE" />
+  <RemoveMSI>
+    <IgnoreProduct ID="InfoPath" />
+    <IgnoreProduct ID="InfoPathR" />
+    <IgnoreProduct ID="PrjPro" />
+    <IgnoreProduct ID="PrjStd" />
+    <IgnoreProduct ID="SharePointDesigner" />
+    <IgnoreProduct ID="VisPro" />
+    <IgnoreProduct ID="VisStd" />
+  </RemoveMSI>
+  <AppSettings>
+    <Setup Name="Company" Value="YOURCOMPANYNAME" /> ##Replace with company name##
+  </AppSettings>
+  <Display Level="Full" AcceptEULA="TRUE" />
+</Configuration>
+
+##Basic Bat file to run install##
+
+@ECHO ##To see the install when testing## or @ECHO OFF
+
+CD C:\
+CD Office365 Install\
+setup.exe /configure Configuration.xml
+
+PAUSE ##For testing -Remove PAUSE once successful install have been determined## 
